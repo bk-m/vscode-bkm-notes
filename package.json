@@ -1,0 +1,69 @@
+{
+  "name": "bkm-notes",
+  "displayName": "BKM Notes",
+  "description": "Quickly create/open a note file in the current project's `.vscode` folder.",
+  "version": "0.0.1",
+  "publisher": "bkm",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:bkm.quickNote"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "bkm.quickNote",
+        "title": "BKM - Open note in current project"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "bkm.quickNote",
+        "key": "alt+m n",
+        "mac": "cmd+m n"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bk-m/vscode-bkm-notes.git"
+  },
+  "author": "bkm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bk-m/vscode-bkm-notes/issues"
+  },
+  "homepage": "https://github.com/bk-m/vscode-bkm-notes",
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "rimraf out && esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "build": "npm run esbuild-base -- --sourcemap",
+    "watch": "npm run esbuild-base -- --sourcemap --watch",
+    "test-compile": "tsc -p ./",
+    "pretest": "npm run build && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "vsce-package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.1",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "@vscode/test-electron": "^2.2.2",
+    "@vscode/vsce": "^2.17.0",
+    "esbuild": "^0.17.5",
+    "eslint": "^8.33.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.1.0",
+    "rimraf": "^4.1.2",
+    "typescript": "^4.9.4"
+  }
+}
